@@ -1,10 +1,72 @@
-# SBTI Rebuild
+<h1 align="center">SBTI Rebuild</h1>
 
-> 一个以 `core.html` 为业务真源、以本地静态部署为发布边界的 SBTI 前端复刻项目。
->
-> 这一版选择 `Vite + React + TypeScript + CSS Modules` 作为开发底座，但最终产物仍然是可以直接部署到任意静态托管平台的一组前端文件，不依赖服务器、不依赖数据库、也不依赖远端脚本。
+<p align="center">
+  <strong>一个以 <code>core.html</code> 为业务真源、以本地静态部署为发布边界的 SBTI 前端复刻项目</strong>
+</p>
 
-> 这是一个完全公益、完全开源、无任何商业收益预期的整理与复刻项目。做它的目的，不是把原作“改头换面”拿去变现，而是尽量把一份有趣的互联网作品整理成更容易开发、维护、复查和继续完善的版本。
+<p align="center">
+  这一版采用 <code>Vite + React + TypeScript + CSS Modules</code> 作为开发底座，<br />
+  但最终产物仍然是一组可以直接部署到任意静态托管平台的前端文件，<br />
+  不依赖服务器、不依赖数据库，也不依赖远端脚本。
+</p>
+
+<p align="center">
+  <img alt="Stack" src="https://img.shields.io/badge/Stack-Vite%20%2B%20React%20%2B%20TypeScript-111827?style=for-the-badge&logo=vite&logoColor=white">
+  <img alt="Deploy" src="https://img.shields.io/badge/Deploy-Static%20Only-166534?style=for-the-badge">
+  <img alt="Source of Truth" src="https://img.shields.io/badge/Truth%20Source-core.html-7c3aed?style=for-the-badge">
+</p>
+
+<p align="center">
+  <img alt="公益开源" src="https://img.shields.io/badge/公益开源-无商业利益-0f766e?style=flat-square">
+  <img alt="离线可跑" src="https://img.shields.io/badge/核心流程-支持离线运行-1d4ed8?style=flat-square">
+  <img alt="Build" src="https://img.shields.io/badge/Build-通过-15803d?style=flat-square">
+  <img alt="Test" src="https://img.shields.io/badge/Test-通过-15803d?style=flat-square">
+</p>
+
+> 这是一个完全公益、完全开源、无任何商业收益预期的整理与复刻项目。
+> 做它的目的，不是把原作“改头换面”拿去变现，而是尽量把一份有趣的互联网作品整理成更容易开发、维护、复查和继续完善的版本。
+
+---
+
+## 项目预览
+
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <img src="./docs/assets/quiz-screen.png" alt="答题页预览" />
+      <br />
+      <sub>答题页风格参考</sub>
+    </td>
+    <td width="50%" align="center">
+      <img src="./docs/assets/result-screen.png" alt="结果页预览" />
+      <br />
+      <sub>结果页风格参考</sub>
+    </td>
+  </tr>
+</table>
+
+---
+
+## 目录
+
+- [项目定位](#项目定位)
+- [这版已经做了什么](#这版已经做了什么)
+- [为什么文件比原作者多](#为什么文件比原作者多)
+- [技术方案](#技术方案)
+- [架构概览](#架构概览)
+- [目录结构](#目录结构)
+- [开发命令](#开发命令)
+- [数据与素材来源](#数据与素材来源)
+- [当前完成状态](#当前完成状态)
+- [这版和超轻量三文件版的关系](#这版和超轻量三文件版的关系)
+- [致谢与说明](#致谢与说明)
+- [公益开源立场](#公益开源立场)
+- [关于 AI 协作](#关于-ai-协作)
+- [一起维护](#一起维护)
+- [验证记录](#验证记录)
+- [开发原则](#开发原则)
+
+---
 
 ## 项目定位
 
@@ -17,21 +79,11 @@
 - 能不能把后续维护成本降下来，让界面、规则、文案、资源各自有清晰边界。
 - 能不能最终仍然发布成纯静态站，做到零后端、低成本、易部署。
 
+---
+
 ## 这版已经做了什么
 
-### 1. 重新建立了“可信来源”
-
-我们没有把 [index.js](C:/Users/30847/Desktop/SBTI/index.js) 和 [index_native.js](C:/Users/30847/Desktop/SBTI/index_native.js) 当成业务逻辑来源。
-
-当前采用的判断是：
-
-- [core.html](C:/Users/30847/Desktop/SBTI/core.html) 是业务真源。
-- [main.js](C:/Users/30847/Desktop/SBTI/main.js) 是高价值的本地逻辑镜像，便于阅读和迁移。
-- [main.css](C:/Users/30847/Desktop/SBTI/main.css) 是高价值的视觉骨架参考。
-- `index_native.js` 更接近监控层，不参与复刻运行时。
-- `index.js` 更接近配置层，不作为题库或评分逻辑来源。
-
-### 2. 把原始页面中的业务数据拆成了独立模块
+### 1. 把原始页面中的业务数据拆成了独立模块
 
 我们已经把原本混在大脚本里的内容抽离到 `src/data/generated/*`：
 
@@ -43,7 +95,7 @@
 
 这样做之后，后续再改题目、查维度、核对类型，不需要回到一整坨 HTML/JS 里继续考古。
 
-### 3. 把核心评分逻辑独立成了可测试的引擎
+### 2. 把核心评分逻辑独立成了可测试的引擎
 
 核心逻辑现在集中在：
 
@@ -64,7 +116,7 @@
 
 这意味着后续继续调整界面时，不容易把评分逻辑悄悄改坏。
 
-### 4. 做成了清晰的单页应用结构
+### 3. 做成了清晰的单页应用结构
 
 当前页面流程已经整理为三段：
 
@@ -80,11 +132,12 @@
 
 这和原始项目“少文件但耦合很重”的方式不同。我们这版的目标是让每个页面职责清楚，后面继续迭代时不容易牵一发而动全身。
 
-### 5. 复用了参考仓库的可用成果
+### 4. 复用了参考仓库的可用成果
 
 我们参考了：
 
 - [serenakeyitan/sbti-wiki](https://github.com/serenakeyitan/sbti-wiki)
+- 非常感谢作者的开源！
 
 当前复用的是：
 
@@ -97,40 +150,40 @@
 - [public/data/outcomes.json](C:/Users/30847/Desktop/SBTI/sbti-app/public/data/outcomes.json)
 - [public/images](C:/Users/30847/Desktop/SBTI/sbti-app/public/images)
 
-说明一下：由于当前 GitHub token 权限不足，无法直接 fork 到账号下，所以采取的是本地克隆参考仓库并复用可复用资产的策略。
-
 ## 为什么文件比原作者多
 
 原作者的实现更偏向“把所有东西塞进少量文件里直接跑起来”。
 
 我们这版增加的不是“无意义复杂度”，而是下面几类工程能力：
 
-| 层次 | 当前落点 | 解决的问题 |
-| --- | --- | --- |
-| 文档层 | `README.md`、`docs/project-foundation.md` | 把方案写死，防止后续偏航 |
-| 数据层 | `src/data/generated/*` | 题库、维度、类型可独立维护 |
-| 逻辑层 | `src/lib/quizEngine.ts` | 评分逻辑可复用、可测试 |
-| 页面层 | `src/screens/*` | 页面职责清晰，便于继续复刻 |
-| 样式层 | `CSS Modules + tokens.css` | 降低样式串扰 |
-| 验证层 | `vitest` | 防止改动引入回归问题 |
+| 层次   | 当前落点                                      | 解决的问题                 |
+| ------ | --------------------------------------------- | -------------------------- |
+| 文档层 | `README.md`、`docs/project-foundation.md` | 把方案写死，防止后续偏航   |
+| 数据层 | `src/data/generated/*`                      | 题库、维度、类型可独立维护 |
+| 逻辑层 | `src/lib/quizEngine.ts`                     | 评分逻辑可复用、可测试     |
+| 页面层 | `src/screens/*`                             | 页面职责清晰，便于继续复刻 |
+| 样式层 | `CSS Modules + tokens.css`                  | 降低样式串扰               |
+| 验证层 | `vitest`                                    | 防止改动引入回归问题       |
 
 换句话说：
 
 - 原作者更适合快速发布。
 - 这一版更适合长期维护和继续开源整理。
 
+---
+
 ## 技术方案
 
 ### 开发栈
 
-| 类别 | 选择 |
-| --- | --- |
-| 构建工具 | Vite |
-| UI 框架 | React |
-| 语言 | TypeScript |
+| 类别     | 选择        |
+| -------- | ----------- |
+| 构建工具 | Vite        |
+| UI 框架  | React       |
+| 语言     | TypeScript  |
 | 样式方案 | CSS Modules |
-| 测试 | Vitest |
-| 发布形态 | 纯静态文件 |
+| 测试     | Vitest      |
+| 发布形态 | 纯静态文件  |
 
 ### 发布边界
 
@@ -163,6 +216,8 @@ npm run build
 
 如果你没有预算买服务器，这套方案完全够用。
 
+---
+
 ## 架构概览
 
 ```mermaid
@@ -178,11 +233,14 @@ flowchart TD
     H --> I["dist/ 静态发布产物"]
 ```
 
+---
+
 ## 目录结构
 
 ```text
 sbti-app/
 ├─ docs/
+│  ├─ assets/
 │  └─ project-foundation.md
 ├─ public/
 │  ├─ data/
@@ -203,6 +261,8 @@ sbti-app/
 └─ dist/
 ```
 
+---
+
 ## 开发命令
 
 ```bash
@@ -217,15 +277,14 @@ npm run build
 
 - `npm run extract:data`
   从本地素材中提取题库、维度、类型和文案，生成 `src/data/generated/*`
-
 - `npm run dev`
   本地开发预览
-
 - `npm run test`
   运行评分逻辑测试
-
 - `npm run build`
   生成最终静态站产物到 `dist/`
+
+---
 
 ## 数据与素材来源
 
@@ -242,6 +301,8 @@ npm run build
 外部参考仓库：
 
 - [sbti-wiki-ref](C:/Users/30847/Desktop/SBTI/sbti-wiki-ref)
+
+---
 
 ## 当前完成状态
 
@@ -262,7 +323,9 @@ npm run build
 - 自动化部署脚本
 - 极简三文件静态版导出
 
-## 这版和“超轻量三文件版”的关系
+---
+
+## 这版和超轻量三文件版的关系
 
 这个仓库当前选择的是“工程化开发，静态化发布”的路线。
 
@@ -280,6 +343,8 @@ npm run build
 
 那会更接近原始项目的形态，但建议在当前工程版稳定之后再做。
 
+---
+
 ## 致谢与说明
 
 首先要认真感谢原始 SBTI 项目的作者和最初把这套内容做出来的人。
@@ -295,11 +360,13 @@ npm run build
 
 同时也感谢：
 
-- [`core.html`](C:/Users/30847/Desktop/SBTI/core.html) 所承载的原始页面逻辑
+- [core.html](C:/Users/30847/Desktop/SBTI/core.html) 所承载的原始页面逻辑
 - [main.js](C:/Users/30847/Desktop/SBTI/main.js) 与 [main.css](C:/Users/30847/Desktop/SBTI/main.css) 提供的高价值本地镜像
 - [serenakeyitan/sbti-wiki](https://github.com/serenakeyitan/sbti-wiki) 提供的静态整理思路和部分可复用结果资源
 
 如果原作者或相关整理者认为这里有需要进一步标注、修正或删改的地方，欢迎直接提出，我们会认真对待。
+
+---
 
 ## 公益开源立场
 
@@ -321,9 +388,11 @@ npm run build
 - 让静态部署更容易落地
 - 让想继续维护的人更容易接手
 
+---
+
 ## 关于 AI 协作
 
-由于时间确实比较紧，这一版里的绝大多数代码都由 AI 协助生成、整理和重构完成。
+由于时间确实比较快，这一版里的绝大多数代码都由 AI 协助生成、整理和重构完成。
 
 这不意味着这个仓库会对质量放弃要求，恰恰相反，这也是为什么我们把题库、类型、规则、页面和测试拆开来做的原因之一：只有结构清楚，AI 生成的内容才更容易被人类检查、修正和持续维护。
 
@@ -332,7 +401,9 @@ npm run build
 - 如果你在项目里看到不合理的实现、文案遗漏、类型错误、视觉偏差，完全正常，这说明它仍然处在快速建设期
 - 如果后续发现问题，我会继续认真维护，而不是把 AI 生成内容一丢就不管
 
-这个仓库不是“AI 自动喷出来然后没人负责”的一次性产物，而是一个会继续修、继续补、继续收口的项目基础。
+这个仓库不是“AI 自动做出来然后没人负责”的一次性产物，而是一个会继续修、继续补、继续收口的项目基础。欢迎大家加入，本readme也是AI写的，见谅！
+
+---
 
 ## 一起维护
 
@@ -355,6 +426,8 @@ npm run build
 
 这不是一个“已经做完”的项目，而是一个“欢迎更多人把它一起做好”的项目。
 
+---
+
 ## 验证记录
 
 当前仓库已经验证通过：
@@ -363,16 +436,6 @@ npm run build
 npm run test
 npm run build
 ```
-
-如果你只关心“能不能部署”，看 `dist/` 就够了。
-
-## 开发原则
-
-- 不重写题意，不擅自改题。
-- 不发明新的评分算法。
-- 不接真实后端。
-- 不保留监控、埋点、跳转 App、远端配置拉取等线上依赖。
-- 优先复刻原始页面的结构、节奏和视觉气质。
 
 ## 备注
 
