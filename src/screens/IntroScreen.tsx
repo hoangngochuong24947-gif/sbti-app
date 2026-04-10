@@ -18,7 +18,7 @@ export function IntroScreen({
       <div className={styles.eyebrow}>SBTI 人格测试重构版</div>
       <h1>SBTI测试 人格解析注入版</h1>
       <p className={styles.sub}>
-        当前技术栈采用 Vite + React + TypeScript + CSS Modules，结果插画与图鉴说明来自开源项目https://github.com/serenakeyitan/sbti-wiki的整理成果。
+        当前技术栈采用 Vite + React + TypeScript + ESLint9，后续开发可以围绕此框架。结果插画与图鉴说明来自开源项目https://github.com/serenakeyitan/sbti-wiki的整理成果。
       </p>
 
       <div className={styles.heroGrid}>

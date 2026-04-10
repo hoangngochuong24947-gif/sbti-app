@@ -1,14 +1,6 @@
 <h1 align="center">SBTI Rebuild</h1>
 
-<p align="center">
-  <strong>一个以 <code>core.html</code> 为业务真源、以本地静态部署为发布边界的 SBTI 前端复刻项目</strong>
-</p>
-
-<p align="center">
-  这一版采用 <code>Vite + React + TypeScript + CSS Modules</code> 作为开发底座，<br />
-  但最终产物仍然是一组可以直接部署到任意静态托管平台的前端文件，<br />
-  不依赖服务器、不依赖数据库，也不依赖远端脚本。
-</p>
+    本项目采用`Vite + React + TypeScript + ESLint 9`作为开发底座，
 
 <p align="center">
   <img alt="Stack" src="https://img.shields.io/badge/Stack-Vite%20%2B%20React%20%2B%20TypeScript-111827?style=for-the-badge&logo=vite&logoColor=white">
@@ -24,9 +16,7 @@
 </p>
 
 > 这是一个完全公益、完全开源、无任何商业收益预期的整理与复刻项目。
-> 做它的目的，不是把原作“改头换面”拿去变现，而是尽量把一份有趣的互联网作品整理成更容易开发、维护、复查和继续完善的版本。
-
----
+> 做它的目的，不是为了把原作“改头换面”拿去变现，而是尽量把一份有趣的互联网作品整理成更容易开发、维护、复查和继续完善的版本。欢迎广大朋友来PR你们的奇思妙想，我一定尽力维护，如果本项目你觉得确实易于维护，欢迎点点您宝贵的fork，最好还能看看我别的项目！
 
 ## 项目预览
 
@@ -44,29 +34,6 @@
     </td>
   </tr>
 </table>
-
----
-
-## 目录
-
-- [项目定位](#项目定位)
-- [这版已经做了什么](#这版已经做了什么)
-- [为什么文件比原作者多](#为什么文件比原作者多)
-- [技术方案](#技术方案)
-- [架构概览](#架构概览)
-- [目录结构](#目录结构)
-- [开发命令](#开发命令)
-- [数据与素材来源](#数据与素材来源)
-- [当前完成状态](#当前完成状态)
-- [这版和超轻量三文件版的关系](#这版和超轻量三文件版的关系)
-- [致谢与说明](#致谢与说明)
-- [公益开源立场](#公益开源立场)
-- [关于 AI 协作](#关于-ai-协作)
-- [一起维护](#一起维护)
-- [验证记录](#验证记录)
-- [开发原则](#开发原则)
-
----
 
 ## 项目定位
 
@@ -130,8 +97,6 @@
 - [TestScreen.tsx](C:/Users/30847/Desktop/SBTI/sbti-app/src/screens/TestScreen.tsx)
 - [ResultScreen.tsx](C:/Users/30847/Desktop/SBTI/sbti-app/src/screens/ResultScreen.tsx)
 
-这和原始项目“少文件但耦合很重”的方式不同。我们这版的目标是让每个页面职责清楚，后面继续迭代时不容易牵一发而动全身。
-
 ### 4. 复用了参考仓库的可用成果
 
 我们参考了：
@@ -151,8 +116,6 @@
 - [public/images](C:/Users/30847/Desktop/SBTI/sbti-app/public/images)
 
 ## 为什么文件比原作者多
-
-原作者的实现更偏向“把所有东西塞进少量文件里直接跑起来”。
 
 我们这版增加的不是“无意义复杂度”，而是下面几类工程能力：
 
@@ -185,40 +148,7 @@
 | 测试     | Vitest      |
 | 发布形态 | 纯静态文件  |
 
-### 发布边界
-
-虽然开发时用了 React 和 Vite，但上线并不需要 Node 服务。
-
-执行：
-
-```bash
-npm run build
-```
-
-会生成：
-
-- [dist](C:/Users/30847/Desktop/SBTI/sbti-app/dist)
-
-这个目录就是最终发布产物。它包含：
-
-- `index.html`
-- 编译后的 JS
-- 编译后的 CSS
-- 本地 JSON 数据
-- 结果图片资源
-
-也就是说，这一版完全可以部署到：
-
-- GitHub Pages
-- Cloudflare Pages
-- Netlify
-- 任意静态文件服务器
-
-如果你没有预算买服务器，这套方案完全够用。
-
----
-
-## 架构概览
+架构概览
 
 ```mermaid
 flowchart TD
@@ -286,24 +216,6 @@ npm run build
 
 ---
 
-## 数据与素材来源
-
-当前复刻主要依赖以下本地资料：
-
-- [core.html](C:/Users/30847/Desktop/SBTI/core.html)
-- [main.js](C:/Users/30847/Desktop/SBTI/main.js)
-- [main.css](C:/Users/30847/Desktop/SBTI/main.css)
-- [writerspeak.md](C:/Users/30847/Desktop/SBTI/writerspeak.md)
-- [SBTI (Silly Big Personality Test) 27 种人格资料全集.pdf](C:/Users/30847/Desktop/SBTI/SBTI%20%28Silly%20Big%20Personality%20Test%29%2027%20%E7%A7%8D%E4%BA%BA%E6%A0%BC%E8%B5%84%E6%96%99%E5%85%A8%E9%9B%86.pdf)
-- [答题页面风格.png](C:/Users/30847/Desktop/SBTI/%E7%AD%94%E9%A2%98%E9%A1%B5%E9%9D%A2%E9%A3%8E%E6%A0%BC.png)
-- [结算页面风格.png](C:/Users/30847/Desktop/SBTI/%E7%BB%93%E7%AE%97%E9%A1%B5%E9%9D%A2%E9%A3%8E%E6%A0%BC.png)
-
-外部参考仓库：
-
-- [sbti-wiki-ref](C:/Users/30847/Desktop/SBTI/sbti-wiki-ref)
-
----
-
 ## 当前完成状态
 
 ### 已完成
@@ -322,26 +234,6 @@ npm run build
 - 更激进的移动端首屏同构
 - 自动化部署脚本
 - 极简三文件静态版导出
-
----
-
-## 这版和超轻量三文件版的关系
-
-这个仓库当前选择的是“工程化开发，静态化发布”的路线。
-
-也就是说：
-
-- 开发时文件较多，是为了维护方便。
-- 发布时仍然只有一套静态产物，不需要后端。
-
-如果后续需要，我们也可以在这套工程基础上再导出一版更极简的：
-
-- `index.html`
-- `main.js`
-- `main.css`
-- `images/*`
-
-那会更接近原始项目的形态，但建议在当前工程版稳定之后再做。
 
 ---
 
@@ -368,7 +260,7 @@ npm run build
 
 ---
 
-## 公益开源立场
+## 说明
 
 这个项目从一开始就不是商业项目。
 
@@ -392,7 +284,7 @@ npm run build
 
 ## 关于 AI 协作
 
-由于时间确实比较快，这一版里的绝大多数代码都由 AI 协助生成、整理和重构完成。
+由于时间确实比较赶，本项目里的绝大多数代码都由 AI 协助生成、整理和重构完成。
 
 这不意味着这个仓库会对质量放弃要求，恰恰相反，这也是为什么我们把题库、类型、规则、页面和测试拆开来做的原因之一：只有结构清楚，AI 生成的内容才更容易被人类检查、修正和持续维护。
 
@@ -405,7 +297,7 @@ npm run build
 
 ---
 
-## 一起维护
+## 呼吁
 
 如果你也喜欢这个项目，或者你也觉得这类互联网原生作品值得被认真整理下来，欢迎一起参与维护。
 
